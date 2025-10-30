@@ -326,6 +326,13 @@
       .top-nav .links { gap: 10px; }
       .metrics { grid-template-columns: 1fr 1fr; }
     }
+    @media (max-width: 768px) {
+      .top-nav .links { flex-wrap: wrap; gap: 10px; }
+      .section-card { padding: 20px 16px; }
+      .metrics { grid-template-columns: 1fr 1fr; }
+      .project-card img { height: 140px; }
+      .about-photo { width: 90px; height: 90px; }
+    }
     .section-card {
       background: var(--color-surface);
       border: 1px solid rgba(255,255,255,0.12);
@@ -519,6 +526,12 @@
       .project-card img {
         height: 90px;
       }
+      .cards-3 { grid-template-columns: 1fr; }
+      .service-grid { grid-template-columns: 1fr; }
+      .skills-rows { gap: 10px 10px; }
+      .section-card { padding: 16px 12px; }
+      .metrics { grid-template-columns: 1fr 1fr; gap: 10px; }
+      .header-wave { height: 32px; }
     }
     .social-links {
       margin-top: 10px;
@@ -1635,7 +1648,7 @@
     <div class="education-timeline">
       <div class="education-item">
         <span class="education-dot"><i class="fa-solid fa-graduation-cap"></i></span>
-        <strong><img class="edu-logo" src="images/logos/greenwich.png" alt="University of Greenwich logo">University of Greenwich</strong>
+        <strong><img class="edu-logo" src="images/logos/greenwich.png" alt="">University of Greenwich</strong>
         <div class="education-meta">MSc Management of Business IT</div>
         <p>2024 – Sep 2025</p>
         <p>Graduated with Distinction</p>
@@ -1647,7 +1660,7 @@
       </div>
       <div class="education-item">
         <span class="education-dot"><i class="fa-solid fa-university"></i></span>
-        <strong><img class="edu-logo" src="images/logos/bahcesehir.png" alt="Bahcesehir University logo">Bahcesehir University</strong>
+        <strong><img class="edu-logo" src="images/logos/bahcesehir.png" alt="">Bahcesehir University</strong>
         <div class="education-meta">BSc Industrial Engineering</div>
         <p>2019 – 2024</p>
         <ul>
