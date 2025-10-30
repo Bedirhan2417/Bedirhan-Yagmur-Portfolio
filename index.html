@@ -227,6 +227,7 @@
       backdrop-filter: blur(10px);
       box-shadow: var(--shadow-sm);
     }
+    .nav-toggle { display: none; background: none; border: 1px solid rgba(255,255,255,0.2); color: var(--color-text); padding: 6px 10px; border-radius: 8px; font-weight: 800; }
     
     .top-nav .brand {
       display: inline-flex;
@@ -327,11 +328,25 @@
       .metrics { grid-template-columns: 1fr 1fr; }
     }
     @media (max-width: 768px) {
-      .top-nav .links { flex-wrap: wrap; gap: 10px; }
+      .nav-toggle { display: inline-flex; align-items: center; gap: 6px; }
+      .top-nav { align-items: stretch; }
+      .top-nav .links { display: none; flex-direction: column; gap: 8px; padding-top: 8px; }
+      .top-nav.open .links { display: flex; }
+      .top-nav .links a { padding: 10px 12px; }
       .section-card { padding: 20px 16px; }
       .metrics { grid-template-columns: 1fr 1fr; }
       .project-card img { height: 140px; }
       .about-photo { width: 90px; height: 90px; }
+      header { padding: 36px 14px; min-height: auto; }
+      .hero-title { font-size: 2rem; margin-bottom: 10px; }
+      .hero-desc { font-size: 1rem; }
+    }
+    @media (min-width: 1024px) {
+      header {
+        text-align: left;
+        align-items: flex-start;
+      }
+      .hero-socials { justify-content: flex-start; }
     }
     .section-card {
       background: var(--color-surface);
@@ -1505,7 +1520,10 @@
   <div id="cursor-dot" class="cursor-dot" aria-hidden="true"></div>
 
   <nav class="top-nav" role="banner" aria-label="Main">
-    <div class="brand">BY</div>
+    <div style="display:flex; align-items:center; gap:10px;">
+      <div class="brand" aria-label="Logo">BY</div>
+      <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu" aria-expanded="false">Menu</button>
+    </div>
     <div class="links">
       <a href="#about">About</a>
       <a href="#education">Education</a>
@@ -1991,6 +2009,16 @@
       });
       const first = document.querySelector('[data-filter="all"]');
       if (first) first.click();
+
+      // Mobile nav toggle
+      const navToggle = document.getElementById('nav-toggle');
+      const topNav = document.querySelector('.top-nav');
+      if (navToggle && topNav) {
+        navToggle.addEventListener('click', () => {
+          const opened = topNav.classList.toggle('open');
+          navToggle.setAttribute('aria-expanded', String(opened));
+        });
+      }
 
       // Custom cursor
       const dotEl = document.getElementById('cursor-dot');
