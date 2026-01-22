@@ -332,7 +332,7 @@
       .section-card { padding: 20px 16px; }
       .metrics { grid-template-columns: 1fr 1fr; }
       .project-card img { height: 140px; }
-      .about-photo { width: 190px; height: 190px; }
+      .about-photo { width: 280px; }
       header { padding: 36px 14px; min-height: auto; }
       .hero-title { font-size: 2rem; margin-bottom: 10px; }
       .hero-desc { font-size: 1rem; }
@@ -842,11 +842,12 @@
     }
     .about-photo {
       flex-shrink: 0;
-      width: 260px;
-      height: 260px;
-      border-radius: 50%;
+      width: 360px;
+      height: auto;
+      aspect-ratio: 4 / 5;
+      border-radius: 22px;
       object-fit: cover;
-      object-position: 50% 22%;
+      object-position: 50% 18%;
       box-shadow: var(--shadow-md);
       border: 2px solid var(--color-border);
     }
@@ -891,8 +892,7 @@
         padding: 18px 12px;
       }
       .about-photo {
-        width: 170px;
-        height: 170px;
+        width: 220px;
       }
       .about-content {
         text-align: left;
@@ -1636,7 +1636,7 @@
       <div class="experience-step">
         <span class="experience-dot"><i class="fa-solid fa-chart-line"></i></span>
         <strong>Business Analyst Intern — Bilstein Group UK</strong>
-        <div class="experience-meta">Chesterfield, England | Oct 2025 – Present</div>
+        <div class="experience-meta">Chesterfield, England | Sep 2025 – Dec 2025</div>
         <ul>
           <li>Assist in IT business analysis and data-driven decision-making.</li>
           <li>Develop Power BI reports and dashboards for business insights.</li>
