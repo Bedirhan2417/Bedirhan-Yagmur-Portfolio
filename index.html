@@ -1522,30 +1522,18 @@
   </nav>
 
   <header>
-    <img class="about-photo" src="images/profile.jpg" alt="Portrait of Bedirhan Yagmur" style="width:130px;height:130px;border-radius:50%;object-fit:cover;margin-bottom:24px;box-shadow:0 2px 12px #6366f122;" />
+    <img class="about-photo" src="images/profile.jpg" alt="Portrait of Bedirhan Yagmur" />
     <h1 class="hero-title">Bedirhan Yagmur</h1>
     <div class="hero-desc">Industrial Engineer & Management Business IT</div>
-    <div class="hero-animated" id="hero-animated"></div>
+    <div class="hero-ctas">
+      <a class="btn btn-primary" href="mailto:byagmur2417@hotmail.com">Email</a>
+      <a class="btn" href="https://www.linkedin.com/in/bedirhan-yagmur-080996214/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+    </div>
     <div class="hero-socials">
       <a href="mailto:byagmur2417@hotmail.com" title="E-mail"><i class="fa-solid fa-envelope"></i></a>
       <a href="https://www.linkedin.com/in/bedirhan-yagmur-080996214/" target="_blank" rel="noopener noreferrer" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
     </div>
   </header>
-
-  <svg class="header-wave" viewBox="0 0 1440 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <defs>
-      <linearGradient id="waveGradient" x1="0" y1="0" x2="1" y2="0">
-        <stop offset="0%" stop-color="#6366f1" />
-        <stop offset="100%" stop-color="#3b82f6" />
-      </linearGradient>
-      <linearGradient id="waveGradientDark" x1="0" y1="0" x2="1" y2="0">
-        <stop offset="0%" stop-color="#818cf8" />
-        <stop offset="100%" stop-color="#fbbf24" />
-      </linearGradient>
-    </defs>
-    <path class="wave-path-light" fill="url(#waveGradient)" fill-opacity="0.22" d="M0,30 C360,90 1080,0 1440,30 L1440,60 L0,60 Z"></path>
-    <path class="wave-path-dark" style="display:none;" fill="url(#waveGradientDark)" fill-opacity="0.22" d="M0,30 C360,90 1080,0 1440,30 L1440,60 L0,60 Z"></path>
-  </svg>
 
   <div class="announcement-banner">
     <span class="pill">Now</span>
@@ -1902,39 +1890,7 @@
   </main>
 
   <script>
-    // Animasyonlu yazi efekti
-    const heroTexts = [
-      'MSc Management of Business IT @ Greenwich',
-      'Industrial Engineer',
-      'Building digital solutions',
-      'Loves clean UI & code',
-    ];
-    let heroIndex = 0, charIndex = 0, isDeleting = false;
-    function typeHeroText() {
-      const el = document.getElementById('hero-animated');
-      if (!el) return;
-      let current = heroTexts[heroIndex];
-      if (isDeleting) {
-        el.textContent = current.substring(0, charIndex--);
-        if (charIndex < 0) {
-          isDeleting = false;
-          heroIndex = (heroIndex + 1) % heroTexts.length;
-          setTimeout(typeHeroText, 600);
-          return;
-        }
-      } else {
-        el.textContent = current.substring(0, charIndex++);
-        if (charIndex > current.length) {
-          isDeleting = true;
-          setTimeout(typeHeroText, 1200);
-          return;
-        }
-      }
-      setTimeout(typeHeroText, isDeleting ? 30 : 70);
-    }
     window.addEventListener('DOMContentLoaded', () => {
-      // Wave path: keep default SVG visibility (avoid forcing dark-only presentation)
-      typeHeroText();
       // Scroll-spy active link highlight
       const sections = ['about','education','experience','projects','skills'];
       const links = Array.from(document.querySelectorAll('.top-nav .links a'));
