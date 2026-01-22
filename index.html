@@ -108,7 +108,7 @@
       backdrop-filter: blur(16px);
       border: 1px solid var(--color-border);
       border-radius: 22px;
-      margin: 40px 20px;
+      margin: 40px auto;
       padding: 80px 40px;
       text-align: center;
       position: relative;
@@ -119,6 +119,8 @@
       justify-content: center;
       box-shadow: var(--shadow-md);
       animation: none;
+      width: calc(100% - 40px);
+      max-width: 1000px;
     }
     .hero-headline {
       font-family: 'Poppins', 'Inter', sans-serif;
@@ -330,17 +332,14 @@
       .section-card { padding: 20px 16px; }
       .metrics { grid-template-columns: 1fr 1fr; }
       .project-card img { height: 140px; }
-      .about-photo { width: 90px; height: 90px; }
+      .about-photo { width: 140px; height: 140px; }
       header { padding: 36px 14px; min-height: auto; }
       .hero-title { font-size: 2rem; margin-bottom: 10px; }
       .hero-desc { font-size: 1rem; }
     }
     @media (min-width: 1024px) {
-      header {
-        text-align: left;
-        align-items: flex-start;
-      }
-      .hero-socials { justify-content: flex-start; }
+      header { text-align: center; align-items: center; }
+      .hero-socials { justify-content: center; }
     }
     .section-card {
       background: var(--color-surface);
@@ -843,8 +842,8 @@
     }
     .about-photo {
       flex-shrink: 0;
-      width: 120px;
-      height: 120px;
+      width: 180px;
+      height: 180px;
       border-radius: 50%;
       object-fit: cover;
       box-shadow: var(--shadow-md);
@@ -891,8 +890,8 @@
         padding: 18px 12px;
       }
       .about-photo {
-        width: 80px;
-        height: 80px;
+        width: 120px;
+        height: 120px;
       }
       .about-content {
         text-align: left;
