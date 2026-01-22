@@ -99,7 +99,7 @@
         radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.3) 0%, transparent 50%),
         radial-gradient(circle at 40% 40%, rgba(120, 219, 255, 0.2) 0%, transparent 50%);
       z-index: -1;
-      animation: backgroundShift 20s ease-in-out infinite;
+      animation: none;
     }
     
     @keyframes backgroundShift {
@@ -394,8 +394,8 @@
       font-weight: 700;
       letter-spacing: 0.01em;
       margin-bottom: 8px;
-      color: #3b3b4f;
-      text-shadow: 0 2px 12px #6366f111;
+      color: var(--color-text);
+      text-shadow: 0 2px 16px rgba(0,0,0,0.18);
     }
     body.dark-mode h1 {
       color: #fbbf24;
@@ -629,7 +629,7 @@
       z-index: 2;
       position: relative;
       pointer-events: none;
-      animation: waveMove 6s linear infinite alternate;
+      animation: none;
     }
     @keyframes waveMove {
       0% { transform: translateX(0); }
@@ -730,13 +730,8 @@
       font-weight: 800;
       margin-bottom: 18px;
       letter-spacing: 0.01em;
-      background: linear-gradient(45deg, #ffd700, #ffed4e, #ffd700);
-      background-size: 200% 200%;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      animation: gradientShift 3s ease-in-out infinite;
-      text-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
+      color: var(--color-text);
+      text-shadow: 0 2px 18px rgba(0,0,0,0.18);
       position: relative;
     }
     
@@ -747,8 +742,8 @@
       left: 0;
       right: 0;
       bottom: 0;
-      background: linear-gradient(45deg, transparent, rgba(255, 215, 0, 0.1), transparent);
-      animation: shimmer 2s ease-in-out infinite;
+      background: none;
+      animation: none;
       pointer-events: none;
     }
     
@@ -763,22 +758,19 @@
     }
     .hero-desc {
       font-size: 1.25rem;
-      color: #cbd5e1;
+      color: var(--color-text-muted);
       margin-bottom: 18px;
       font-weight: 500;
     }
     .hero-animated {
       font-size: 1.1rem;
       font-weight: 600;
-      color: #fbbf24;
+      color: var(--color-text-muted);
       min-height: 28px;
       margin-bottom: 28px;
       letter-spacing: 0.01em;
       display: inline-block;
-      background: linear-gradient(90deg, #818cf8 0%, #fbbf24 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+      background: none;
     }
     .hero-socials {
       display: flex;
@@ -829,7 +821,8 @@
     .about-section {
       max-width: 700px;
       margin: 0 auto 48px auto;
-      background: #ffc0054d;
+      background: var(--color-surface);
+      border: 1px solid rgba(255,255,255,0.12);
       border-radius: 20px;
       box-shadow: 0 2px 12px #6366f111;
       padding: 36px 32px 32px 32px;
@@ -868,7 +861,7 @@
     }
     .about-content {
       flex: 1;
-      color: #0044cb;
+      color: var(--color-text);
       text-align: left;
     }
     .about-content h2 {
@@ -880,7 +873,7 @@
       font-weight: 700;
     }
     .about-content p {
-      color: #0073ff;
+      color: var(--color-text-muted);
       font-size: 1.08rem;
       margin: 0 0 10px 0;
       font-weight: 500;
@@ -915,7 +908,7 @@
       margin: 36px 0 48px 0;
     }
     .info-card {
-      background: #f5f6fa;
+      background: var(--color-surface);
       border-radius: 16px;
       box-shadow: 0 4px 18px #6366f122;
       border: 2px solid;
@@ -930,7 +923,7 @@
     }
     .info-card strong {
       font-size: 1.18rem;
-      color: #23272f;
+      color: var(--color-text);
       font-family: 'Poppins', 'Inter', sans-serif;
       font-weight: 800;
       letter-spacing: 0.01em;
@@ -948,12 +941,12 @@
     .info-card ul {
       margin: 10px 0 0 18px;
       padding: 0;
-      color: #64748b;
+      color: var(--color-text-muted);
       font-size: 1.01rem;
       font-weight: 500;
     }
     .info-card p {
-      color: #23272f;
+      color: var(--color-text);
       font-size: 1.04rem;
       margin: 8px 0 0 0;
       font-weight: 500;
@@ -1479,9 +1472,10 @@
     }
     /* Custom cursor */
     @media (pointer: fine) {
-      body { cursor: none; }
-      a, button { cursor: none; }
+      body { cursor: auto; }
+      a, button { cursor: pointer; }
       input, textarea { cursor: text; }
+      .cursor-dot, .cursor-outline { display: none; }
       .cursor-dot {
         position: fixed; left: 0; top: 0; width: 8px; height: 8px; border-radius: 50%;
         background: #fbbf24; pointer-events: none; transform: translate(-50%, -50%);
@@ -1496,6 +1490,8 @@
       .cursor-active .cursor-outline { transform: translate(var(--cx), var(--cy)) scale(1.5); }
       .cursor-active .cursor-dot { transform: translate(var(--cx), var(--cy)) scale(0.85); }
     }
+
+    .particles-container { display: none; }
   </style>
 </head>
 <body>
@@ -1532,13 +1528,13 @@
   </nav>
 
   <header>
-    <img class="about-photo" src="images/profile.jpg" alt="Profile Photo" style="width:130px;height:130px;border-radius:50%;object-fit:cover;margin-bottom:24px;box-shadow:0 2px 12px #6366f122;" />
-    <div class="hero-title">Bedirhan Yagmur</div>
+    <img class="about-photo" src="images/profile.jpg" alt="Portrait of Bedirhan Yagmur" style="width:130px;height:130px;border-radius:50%;object-fit:cover;margin-bottom:24px;box-shadow:0 2px 12px #6366f122;" />
+    <h1 class="hero-title">Bedirhan Yagmur</h1>
     <div class="hero-desc">Industrial Engineer & Management Business IT</div>
     <div class="hero-animated" id="hero-animated"></div>
     <div class="hero-socials">
       <a href="mailto:byagmur2417@hotmail.com" title="E-mail"><i class="fa-solid fa-envelope"></i></a>
-      <a href="https://www.linkedin.com/in/bedirhan-yagmur-080996214/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+      <a href="https://www.linkedin.com/in/bedirhan-yagmur-080996214/" target="_blank" rel="noopener noreferrer" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
     </div>
   </header>
 
@@ -1561,6 +1557,8 @@
     <span class="pill">Now</span>
     <span>Open to Business Analyst & IT opportunities.</span>
   </div>
+
+  <main>
 
   <section id="about" class="about-section section-card fade-in delay-1">
     <div class="about-content">
@@ -1663,7 +1661,7 @@
     <div class="education-timeline">
       <div class="education-item">
         <span class="education-dot"><i class="fa-solid fa-graduation-cap"></i></span>
-        <strong><img class="edu-logo" src="images/logos/greenwich.png" alt="">University of Greenwich</strong>
+        <strong><img class="edu-logo" src="images/logos/greenwich.png" alt="University of Greenwich logo">University of Greenwich</strong>
         <div class="education-meta">MSc Management of Business IT</div>
         <p>2024 – Sep 2025</p>
         <p>Graduated with Distinction</p>
@@ -1675,7 +1673,7 @@
       </div>
       <div class="education-item">
         <span class="education-dot"><i class="fa-solid fa-university"></i></span>
-        <strong><img class="edu-logo" src="images/logos/bahcesehir.png" alt="">Bahcesehir University</strong>
+        <strong><img class="edu-logo" src="images/logos/bahcesehir.png" alt="Bahcesehir University logo">Bahcesehir University</strong>
         <div class="education-meta">BSc Industrial Engineering</div>
         <p>2019 – 2024</p>
         <ul>
@@ -1698,7 +1696,7 @@
     <div class="experience-stepper">
       <div class="experience-step">
         <span class="experience-dot"><i class="fa-solid fa-chart-line"></i></span>
-        <strong><img class="exp-logo" src="images/logos/bilstein.png" alt="">Business Analyst Intern — Bilstein Group UK</strong>
+        <strong><img class="exp-logo" src="images/logos/bilstein.png" alt="Bilstein Group logo">Business Analyst Intern — Bilstein Group UK</strong>
         <div class="experience-meta">Chesterfield, England | Oct 2025 – Present</div>
         <ul>
           <li>Assist in IT business analysis and data-driven decision-making.</li>
@@ -1708,7 +1706,7 @@
       </div>
       <div class="experience-step">
         <span class="experience-dot"><i class="fa-solid fa-clipboard-check"></i></span>
-        <strong><img class="exp-logo" src="images/logos/durak.png" alt="">Quality Management Intern – Durak Elevator</strong>
+        <strong><img class="exp-logo" src="images/logos/durak.png" alt="Durak Elevator logo">Quality Management Intern – Durak Elevator</strong>
         <div class="experience-meta">Istanbul · Mar 2024 – May 2024</div>
         <ul>
           <li>Reviewed and aligned ISO 9001 documentation with quality standards.</li>
@@ -1718,7 +1716,7 @@
       </div>
       <div class="experience-step">
         <span class="experience-dot"><i class="fa-solid fa-people-group"></i></span>
-        <strong><img class="exp-logo" src="images/logos/reds.png" alt="">Sales & Event Staff – Cincinnati Reds Stadium</strong>
+        <strong><img class="exp-logo" src="images/logos/reds.png" alt="Cincinnati Reds logo">Sales & Event Staff – Cincinnati Reds Stadium</strong>
         <div class="experience-meta">USA · Jun 2023 – Sep 2023</div>
         <ul>
           <li>Worked in food stands, sold beverages, and improved fan experience logistics.</li>
@@ -1726,7 +1724,7 @@
       </div>
       <div class="experience-step">
         <span class="experience-dot"><i class="fa-solid fa-briefcase"></i></span>
-        <strong><img class="exp-logo" src="images/logos/otoshops.png" alt="">Finance Intern – Otoshops Toyota</strong>
+        <strong><img class="exp-logo" src="images/logos/otoshops.png" alt="Otoshops Toyota logo">Finance Intern – Otoshops Toyota</strong>
         <div class="experience-meta">Istanbul · Jun 2022 – Oct 2022</div>
         <ul>
           <li>Processed and verified 200+ financial transactions monthly.</li>
@@ -1891,7 +1889,7 @@
       </div>
       <div style="margin-bottom:10px;">
         <a class="btn btn-primary" href="mailto:byagmur2417@hotmail.com">Get in Touch</a>
-        <a class="btn" href="https://www.linkedin.com/in/bedirhan-yagmur-080996214/" target="_blank">LinkedIn</a>
+        <a class="btn" href="https://www.linkedin.com/in/bedirhan-yagmur-080996214/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
       </div>
       <div style="margin-bottom:6px;">
         <strong>Quick Links</strong> · 
@@ -1902,10 +1900,12 @@
       </div>
       <div>
         <a href="mailto:byagmur2417@hotmail.com">Email</a> · 
-        <a href="https://www.linkedin.com/in/bedirhan-yagmur-080996214/" target="_blank">LinkedIn</a>
+        <a href="https://www.linkedin.com/in/bedirhan-yagmur-080996214/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
       </div>
     </div>
   </footer>
+
+  </main>
 
   <script>
     // Animasyonlu yazi efekti
@@ -1939,9 +1939,7 @@
       setTimeout(typeHeroText, isDeleting ? 30 : 70);
     }
     window.addEventListener('DOMContentLoaded', () => {
-      // Sadece koyu modda dalga SVG'sinin dark path'i gosterilsin
-      document.querySelector('.wave-path-light').style.display = 'none';
-      document.querySelector('.wave-path-dark').style.display = '';
+      // Wave path: keep default SVG visibility (avoid forcing dark-only presentation)
       typeHeroText();
       // Scroll-spy active link highlight
       const sections = ['about','education','experience','projects','skills'];
@@ -2012,6 +2010,7 @@
       // Custom cursor
       const dotEl = document.getElementById('cursor-dot');
       const outlineEl = document.getElementById('cursor-outline');
+      const cursorEnabled = !!(dotEl && outlineEl) && window.matchMedia && window.matchMedia('(pointer: fine)').matches && getComputedStyle(dotEl).display !== 'none' && getComputedStyle(outlineEl).display !== 'none';
       const setPos = (x, y) => {
         const t = `translate(${x}px, ${y}px)`;
         if (dotEl) dotEl.style.transform = t;
@@ -2019,11 +2018,13 @@
         document.body.style.setProperty('--cx', `${x}px`);
         document.body.style.setProperty('--cy', `${y}px`);
       };
-      window.addEventListener('mousemove', (e) => setPos(e.clientX, e.clientY));
-      document.querySelectorAll('a, button, .skill-badge, .project-card').forEach(el => {
-        el.addEventListener('mouseenter', () => document.body.classList.add('cursor-active'));
-        el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-active'));
-      });
+      if (cursorEnabled) {
+        window.addEventListener('mousemove', (e) => setPos(e.clientX, e.clientY));
+        document.querySelectorAll('a, button, .skill-badge, .project-card').forEach(el => {
+          el.addEventListener('mouseenter', () => document.body.classList.add('cursor-active'));
+          el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-active'));
+        });
+      }
       
     });
   </script>
