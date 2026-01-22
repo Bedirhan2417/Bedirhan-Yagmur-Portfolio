@@ -982,39 +982,37 @@
     .skill-group h3 { color: var(--color-primary); margin: 0 0 10px 0; font-size: 1.05rem; }
     .skills-rows { display: flex; flex-wrap: wrap; gap: 14px 16px; }
     .skill-badge {
-      display: flex;
+      display: inline-flex;
       align-items: center;
       gap: 8px;
-      background: rgba(255, 255, 255, 0.15);
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      color: #fff;
+      background: var(--color-surface-strong);
+      border: 1px solid var(--color-border);
+      color: var(--color-text);
       font-weight: 600;
-      font-size: 1.01rem;
-      border-radius: 20px;
-      padding: 12px 20px;
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+      font-size: 0.98rem;
+      border-radius: 999px;
+      padding: 10px 14px;
+      box-shadow: var(--shadow-sm);
       margin-bottom: 4px;
-      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       position: relative;
       overflow: hidden;
+      transition: transform var(--transition-fast), background var(--transition-fast), border var(--transition-fast), color var(--transition-fast);
     }
     .skill-badge { cursor: pointer; }
     .skill-badge.active {
-      background: linear-gradient(90deg, #fbbf24 0%, #6366f1 100%);
-      color: #23272f;
-      border-color: rgba(255, 255, 255, 0.4);
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
-      transform: translateY(-2px) scale(1.05);
+      background: var(--color-text);
+      color: #ffffff;
+      border-color: var(--color-text);
+      transform: translateY(-1px);
     }
     .skill-badge .level {
       margin-left: 4px;
       padding: 2px 8px;
       border-radius: 999px;
-      background: rgba(255,255,255,0.2);
-      font-size: 0.75rem;
+      background: rgba(0,0,0,0.18);
+      font-size: 0.82rem;
       font-weight: 800;
-      color: #fff;
+      color: #ffffff;
     }
     .skill-badge::before {
       content: '';
@@ -1023,7 +1021,7 @@
       left: -100%;
       width: 100%;
       height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
       transition: left 0.5s ease;
     }
     
@@ -1032,9 +1030,8 @@
     }
     
     .skill-badge:hover {
-      transform: translateY(-4px) scale(1.1);
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
-      border-color: rgba(255, 255, 255, 0.4);
+      transform: translateY(-1px);
+      border-color: rgba(15, 23, 42, 0.22);
     }
     .skill-badge i {
       font-size: 1.2rem;
@@ -1110,143 +1107,41 @@
     .project-tech {
       margin-top: 14px;
       font-size: 0.97rem;
-      color: #6366f1;
-      font-weight: 600;
-      text-align: left;
+      color: var(--color-text-muted);
+      font-weight: 700;
     }
     .project-card strong {
       margin-bottom: 0;
     }
     .info-card.experience-card strong {
-      color: #3b82f6;
+      color: var(--color-text);
       font-size: 1.18rem;
       font-weight: 800;
-      display: flex;
+      display: inline-flex;
       align-items: center;
       gap: 8px;
     }
     .info-card.experience-card .info-meta {
-      color: #fbbf24;
+      color: var(--color-text-muted);
       font-size: 1.01rem;
-      font-weight: 700;
-      margin-bottom: 8px;
+      font-weight: 600;
+      margin-bottom: 10px;
       margin-top: 2px;
       letter-spacing: 0.01em;
     }
     .info-card.experience-card ul {
-      color: #23272f;
-      font-size: 1.01rem;
-      font-weight: 500;
-    }
-    .info-card.experience-card i {
-      font-size: 1.2rem;
-      color: #fbbf24;
-    }
-    .education-timeline {
-      position: relative;
-      margin: 0 auto 48px auto;
-      max-width: 600px;
-      padding-left: 32px;
-    }
-    .education-timeline::before {
-      content: '';
-      position: absolute;
-      left: 16px;
-      top: 0;
-      bottom: 0;
-      width: 4px;
-      background: linear-gradient(180deg, #6366f1 0%, #fbbf24 100%);
-      border-radius: 2px;
-    }
-    .education-item {
-      position: relative;
-      margin-bottom: 38px;
-      padding-left: 32px;
-    }
-    .education-item:last-child {
-      margin-bottom: 0;
-    }
-    .education-dot {
-      position: absolute;
-      left: -16px;
-      top: 6px;
-      width: 18px;
-      height: 18px;
-      background: #fff;
-      border: 4px solid #6366f1;
-      border-radius: 50%;
-      z-index: 2;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .education-dot i {
-      color: #6366f1;
-      font-size: 0.9rem;
-    }
-    .education-item strong {
-      color: var(--color-primary);
-      font-size: 1.13rem;
-      font-family: 'Poppins', 'Inter', sans-serif;
-      font-weight: 700;
-      letter-spacing: 0.01em;
-    }
-    .edu-logo {
-      width: 22px;
-      height: 22px;
-      object-fit: contain;
-      border-radius: 4px;
-      vertical-align: middle;
-      margin-right: 8px;
-      box-shadow: 0 1px 2px rgba(0,0,0,0.25);
-    }
-    .education-meta {
-      color: #fbbf24;
-      font-size: 1.01rem;
-      font-weight: 600;
-      margin-bottom: 4px;
-      margin-top: 2px;
-      letter-spacing: 0.01em;
-    }
-    .education-item p {
       color: var(--color-text-muted);
       font-size: 1.01rem;
-      margin: 4px 0 0 0;
       font-weight: 500;
-    }
-    .education-item ul {
-      color: #64748b;
-      font-size: 0.98rem;
-      margin: 8px 0 0 18px;
-      padding: 0;
-    }
-    @media (max-width: 600px) {
-      .education-timeline {
-        padding-left: 16px;
-      }
-      .education-item {
-        padding-left: 24px;
-      }
-      .education-dot {
-        left: -12px;
-        width: 14px;
-        height: 14px;
-      }
-    }
-    .experience-stepper {
-      position: relative;
-      margin: 0 auto 48px auto;
-      max-width: 700px;
-      padding-left: 38px;
     }
     .experience-stepper::before {
       content: '';
       position: absolute;
       left: 22px;
-      top: 0;
-      bottom: 0;
+      top: 8px;
+      bottom: 8px;
       width: 4px;
-      background: linear-gradient(180deg, #3b82f6 0%, #fbbf24 100%);
+      background: var(--color-border);
       border-radius: 2px;
     }
     .experience-step {
@@ -1261,44 +1156,34 @@
       position: absolute;
       left: -22px;
       top: 2px;
-      width: 32px;
-      height: 32px;
-      background: #23272f;
-      border: 4px solid #3b82f6;
+      width: 34px;
+      height: 34px;
       border-radius: 50%;
-      z-index: 2;
+      background: var(--color-text);
       display: flex;
       align-items: center;
       justify-content: center;
       box-shadow: 0 2px 8px #18181b44;
     }
     .experience-dot i {
-      color: #fbbf24;
+      color: #ffffff;
       font-size: 1.3rem;
     }
     .experience-step strong {
-      color: var(--color-primary);
+      color: var(--color-text);
       font-size: 1.15rem;
       font-family: 'Poppins', 'Inter', sans-serif;
-      font-weight: 700;
+      font-weight: 800;
       letter-spacing: 0.01em;
-      display: block;
-      margin-bottom: 2px;
-    }
-    .exp-logo {
-      width: 22px;
-      height: 22px;
-      object-fit: contain;
-      border-radius: 4px;
-      vertical-align: middle;
-      margin-right: 8px;
-      box-shadow: 0 1px 2px rgba(0,0,0,0.25);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
     }
     .experience-meta {
-      color: #fbbf24;
+      color: var(--color-text-muted);
       font-size: 1.01rem;
       font-weight: 600;
-      margin-bottom: 4px;
+      margin-bottom: 10px;
       margin-top: 2px;
       letter-spacing: 0.01em;
     }
@@ -1678,7 +1563,7 @@
     <div class="experience-stepper">
       <div class="experience-step">
         <span class="experience-dot"><i class="fa-solid fa-chart-line"></i></span>
-        <strong><img class="exp-logo" src="images/logos/bilstein.png" alt="Bilstein Group logo">Business Analyst Intern — Bilstein Group UK</strong>
+        <strong>Business Analyst Intern — Bilstein Group UK</strong>
         <div class="experience-meta">Chesterfield, England | Oct 2025 – Present</div>
         <ul>
           <li>Assist in IT business analysis and data-driven decision-making.</li>
@@ -1688,7 +1573,7 @@
       </div>
       <div class="experience-step">
         <span class="experience-dot"><i class="fa-solid fa-clipboard-check"></i></span>
-        <strong><img class="exp-logo" src="images/logos/durak.png" alt="Durak Elevator logo">Quality Management Intern – Durak Elevator</strong>
+        <strong>Quality Management Intern – Durak Elevator</strong>
         <div class="experience-meta">Istanbul · Mar 2024 – May 2024</div>
         <ul>
           <li>Reviewed and aligned ISO 9001 documentation with quality standards.</li>
@@ -1698,7 +1583,7 @@
       </div>
       <div class="experience-step">
         <span class="experience-dot"><i class="fa-solid fa-people-group"></i></span>
-        <strong><img class="exp-logo" src="images/logos/reds.png" alt="Cincinnati Reds logo">Sales & Event Staff – Cincinnati Reds Stadium</strong>
+        <strong>Sales & Event Staff – Cincinnati Reds Stadium</strong>
         <div class="experience-meta">USA · Jun 2023 – Sep 2023</div>
         <ul>
           <li>Worked in food stands, sold beverages, and improved fan experience logistics.</li>
@@ -1706,7 +1591,7 @@
       </div>
       <div class="experience-step">
         <span class="experience-dot"><i class="fa-solid fa-briefcase"></i></span>
-        <strong><img class="exp-logo" src="images/logos/otoshops.png" alt="Otoshops Toyota logo">Finance Intern – Otoshops Toyota</strong>
+        <strong>Finance Intern – Otoshops Toyota</strong>
         <div class="experience-meta">Istanbul · Jun 2022 – Oct 2022</div>
         <ul>
           <li>Processed and verified 200+ financial transactions monthly.</li>
