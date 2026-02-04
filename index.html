@@ -8,13 +8,13 @@
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Bedirhan Yagmur | Portfolio" />
   <meta property="og:description" content="Business Analyst Intern and Industrial Engineer. Data & BI (Power BI, SAP BW), UX and web projects." />
-  <meta property="og:url" content="" />
+  <meta property="og:url" content="https://bedirhan2417.github.io/Bedirhan-Yagmur-Portfolio/" />
   <meta property="og:site_name" content="Bedirhan Yagmur" />
-  <meta property="og:image" content="images/og-image.jpg" />
+  <meta property="og:image" content="images/profile.jpg" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Bedirhan Yagmur | Portfolio" />
   <meta name="twitter:description" content="Business Analyst Intern and Industrial Engineer. Data & BI (Power BI, SAP BW), UX and web projects." />
-  <meta name="twitter:image" content="images/og-image.jpg" />
+  <meta name="twitter:image" content="images/profile.jpg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="icon" href="favicon.ico" />
@@ -31,7 +31,7 @@
       "addressCountry": "UK"
     },
     "email": "mailto:byagmur2417@hotmail.com",
-    "sameAs": ["https://www.linkedin.com/in/bedirhan-yagmur-080996214/"]
+    "sameAs": ["https://www.linkedin.com/in/bedirhan-yagmur-080996214/", "https://github.com/Bedirhan2417"]
   }
   </script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@700;800&display=swap" rel="stylesheet">
@@ -111,9 +111,10 @@
       position: sticky;
       top: 0;
       z-index: 50;
-      max-width: 1000px;
-      margin: 0 auto;
-      padding: 10px 20px;
+      width: 100%;
+      max-width: 100%;
+      margin: 0;
+      padding: 10px calc((100% - 1000px) / 2 + 20px);
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -122,6 +123,9 @@
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
       transition: box-shadow var(--transition-fast);
+    }
+    @media (max-width: 1040px) {
+      .top-nav { padding: 10px 20px; }
     }
     .top-nav.scrolled {
       box-shadow: var(--shadow-md);
@@ -223,6 +227,18 @@
       transform: translateY(-2px);
       box-shadow: 0 4px 16px rgba(37, 99, 235, 0.35);
       color: #ffffff;
+    }
+    .btn-cv {
+      background: var(--color-surface);
+      border: 2px dashed var(--color-accent);
+      color: var(--color-accent);
+      font-weight: 700;
+    }
+    .btn-cv:hover {
+      background: var(--color-accent-light);
+      border-style: solid;
+      color: var(--color-accent-hover);
+      transform: translateY(-2px);
     }
 
     /* ========== Header / Hero ========== */
@@ -777,7 +793,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      transition: background var(--transition-fast), transform var(--transition-fast);
+      transition: background var(--transition-fast), transform var(--transition-fast), opacity 0.3s ease, visibility 0.3s ease;
       opacity: 0;
       visibility: hidden;
     }
@@ -1031,6 +1047,10 @@
     <div class="hero-ctas">
       <a class="btn btn-primary" href="mailto:byagmur2417@hotmail.com"><i class="fa-solid fa-envelope"></i> Email</a>
       <a class="btn" href="https://www.linkedin.com/in/bedirhan-yagmur-080996214/" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin"></i> LinkedIn</a>
+      <a class="btn" href="https://github.com/Bedirhan2417" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i> GitHub</a>
+    </div>
+    <div style="margin-top:12px;">
+      <a class="btn btn-cv" href="assets/downloads/CV_Bedirhan_Yagmur.pdf" download><i class="fa-solid fa-file-arrow-down"></i> Download CV</a>
     </div>
   </header>
 
@@ -1375,11 +1395,12 @@
   <footer role="contentinfo" id="contact">
     <div class="footer-inner">
       <div class="footer-copy">
-        <span class="footer-emoji">&#128075;</span> &copy; 2025 Bedirhan Yagmur
+        <span class="footer-emoji">&#128075;</span> &copy; <span id="copyright-year">2025</span> Bedirhan Yagmur
       </div>
       <div class="footer-ctas">
         <a class="btn btn-primary" href="mailto:byagmur2417@hotmail.com"><i class="fa-solid fa-envelope"></i> Get in Touch</a>
         <a class="btn" href="https://www.linkedin.com/in/bedirhan-yagmur-080996214/" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin"></i> LinkedIn</a>
+        <a class="btn" href="https://github.com/Bedirhan2417" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i> GitHub</a>
       </div>
       <div class="footer-links">
         <a href="#about">About</a> &middot;
@@ -1461,6 +1482,10 @@
         });
       }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
       revealEls.forEach(el => revealObserver.observe(el));
+
+      // ===== Copyright year =====
+      const yearEl = document.getElementById('copyright-year');
+      if (yearEl) yearEl.textContent = new Date().getFullYear();
 
       // ===== Project filters =====
       const filterChips = document.querySelectorAll('[data-filter]');
