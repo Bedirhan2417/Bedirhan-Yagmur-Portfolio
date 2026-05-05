@@ -1409,8 +1409,144 @@
 
       // Copyright year
       document.getElementById('copyright-year').textContent = new Date().getFullYear();
+
+      // ── STAGGER REVEAL for card children ──
+      function staggerChildren(parentSelector, childSelector, baseDelay, step) {
+        document.querySelectorAll(parentSelector).forEach(parent => {
+          const children = parent.querySelectorAll(childSelector);
+          children.forEach((child, i) => {
+            child.style.opacity = '0';
+            child.style.transform = 'translateY(18px)';
+            child.style.transition = `opacity .45s cubic-bezier(.4,0,.2,1) ${baseDelay + i * step}ms, transform .45s cubic-bezier(.4,0,.2,1) ${baseDelay + i * step}ms`;
+          });
+          const obs = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+              if (entry.isIntersecting) {
+                children.forEach(child => { child.style.opacity='1'; child.style.transform='none'; });
+                obs.unobserve(entry.target);
+              }
+            });
+          }, { threshold: 0.08 });
+          obs.observe(parent);
+        });
+      }
+
+      staggerChildren('.projects-grid', '.project-card', 0, 90);
+      staggerChildren('.edu-cards', '.edu-card', 0, 120);
+      staggerChildren('.stats-stack', '.stat-card', 0, 100);
+      staggerChildren('.skills-layout', '.skill-group', 0, 80);
+      staggerChildren('.timeline', '.timeline-item', 0, 110);
+
+      // ── SKILL TAGS scale-in stagger ──
+      document.querySelectorAll('.skill-group').forEach(group => {
+        const tags = group.querySelectorAll('.skill-tag');
+        tags.forEach((tag, i) => {
+          tag.style.opacity = '0';
+          tag.style.transform = 'scale(.85)';
+          tag.style.transition = `opacity .3s ease ${i*45}ms, transform .3s ease ${i*45}ms`;
+        });
+        new IntersectionObserver(entries => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              tags.forEach(t => { t.style.opacity='1'; t.style.transform='scale(1)'; });
+            }
+          });
+        }, { threshold: 0.2 }).observe(group);
+      });
+
+      // ── HERO content slide-in ──
+      const heroContent = document.querySelector('.hero-content');
+      if (heroContent) {
+        heroContent.style.cssText += 'opacity:0;transform:translateX(-22px);transition:opacity .7s cubic-bezier(.4,0,.2,1) 80ms,transform .7s cubic-bezier(.4,0,.2,1) 80ms;';
+        requestAnimationFrame(() => { heroContent.style.opacity='1'; heroContent.style.transform='none'; });
+      }
+
+      // ── HERO photo slide-in ──
+      const heroPhoto = document.querySelector('.hero-photo-wrap');
+      if (heroPhoto) {
+        heroPhoto.style.cssText += 'opacity:0;transform:translateX(22px);transition:opacity .7s cubic-bezier(.4,0,.2,1) 220ms,transform .7s cubic-bezier(.4,0,.2,1) 220ms;';
+        requestAnimationFrame(() => { heroPhoto.style.opacity='1'; heroPhoto.style.transform='none'; });
+      }
+
+      // ── HERO pills stagger ──
+      document.querySelectorAll('.hero-pills .pill').forEach((pill, i) => {
+        pill.style.opacity = '0';
+        pill.style.transform = 'translateY(10px)';
+        pill.style.transition = `opacity .4s ease ${420+i*55}ms,transform .4s ease ${420+i*55}ms`;
+        setTimeout(() => { pill.style.opacity='1'; pill.style.transform='none'; }, 50);
+      });
+
+      // ── COUNTER animation for stat numbers ──
+      const counterObs = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) return;
+          const el = entry.target;
+          const text = el.textContent.trim();
+          const num = parseFloat(text.replace(/[^0-9.]/g,''));
+          const suffix = text.replace(/[0-9.]/g,'');
+          if (isNaN(num) || num === 0) return;
+          let start = null;
+          const dur = 1100;
+          const tick = ts => {
+            if (!start) start = ts;
+            const p = Math.min((ts-start)/dur, 1);
+            const e = 1-Math.pow(1-p,3);
+            el.textContent = (Number.isInteger(num) ? Math.floor(e*num) : (e*num).toFixed(1)) + suffix;
+            if (p < 1) requestAnimationFrame(tick);
+          };
+          requestAnimationFrame(tick);
+          counterObs.unobserve(el);
+        });
+      }, { threshold: 0.6 });
+      document.querySelectorAll('.stat-num').forEach(el => counterObs.observe(el));
+
+      // ── TIMELINE dot pop ──
+      document.querySelectorAll('.timeline-dot').forEach(dot => {
+        dot.style.transform = 'scale(0)';
+        dot.style.transition = 'transform .4s cubic-bezier(.34,1.56,.64,1)';
+        new IntersectionObserver(entries => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) { dot.style.transform='scale(1)'; }
+          });
+        }, { threshold: 1 }).observe(dot);
+      });
+
     })();
   </script>
+
+  <style>
+    /* Availability banner slide down */
+    .avail-banner { animation: slideDown .55s cubic-bezier(.4,0,.2,1) .05s both; }
+    @keyframes slideDown { from{opacity:0;transform:translateY(-14px)} to{opacity:1;transform:none} }
+
+    /* Nav fade */
+    .nav { animation: navFade .5s ease both; }
+    @keyframes navFade { from{opacity:0} to{opacity:1} }
+
+    /* Section icon bounce when revealed */
+    .reveal.visible .section-icon {
+      animation: iconBounce .5s cubic-bezier(.34,1.56,.64,1) .08s both;
+    }
+    @keyframes iconBounce {
+      from{transform:scale(.5) rotate(-12deg);opacity:0}
+      to{transform:scale(1) rotate(0);opacity:1}
+    }
+
+    /* Timeline line draw */
+    .timeline::before {
+      transform-origin:top;
+      animation: drawLine 1s cubic-bezier(.4,0,.2,1) .2s both;
+    }
+    @keyframes drawLine { from{transform:scaleY(0)} to{transform:scaleY(1)} }
+
+    /* Scroll-top hover spin */
+    .scroll-top:hover i { animation: spinUp .35s ease; }
+    @keyframes spinUp { from{transform:rotate(0) translateY(2px)} to{transform:rotate(360deg) translateY(0)} }
+
+    /* Pill will-change */
+    .hero-pills .pill { will-change:opacity,transform; }
+    .skill-tag { will-change:opacity,transform; }
+  </style>
 
 </body>
 </html>
