@@ -92,7 +92,6 @@
       display:flex;
       align-items:center;
       justify-content:space-between;
-      gap:12px;
     }
     .nav-brand {
       font-family:'DM Serif Display', serif;
@@ -149,41 +148,8 @@
     .nav-toggle.open span:nth-child(2) { opacity:0; }
     .nav-toggle.open span:nth-child(3) { transform:translateY(-7px) rotate(-45deg); }
 
-    /* ── GENERAL MOBILE OPTIMIZATIONS ── */
-    @media(max-width:480px) {
-      section { padding:48px 18px; }
-      .hero { padding:32px 18px 48px; }
-      .avail-banner { padding:0 18px; }
-      .avail-banner-inner { flex-direction:column; align-items:flex-start; gap:10px; padding:12px 16px; }
-      .avail-roles { gap:6px; }
-      .avail-role { font-size:.7rem; padding:3px 9px; }
-      .hero-name { font-size:2.4rem; }
-      .hero-desc { font-size:1rem; }
-      .hero-pills { gap:6px; }
-      .pill { font-size:.75rem; padding:4px 11px; }
-      .hero-actions { flex-direction:column; align-items:center; }
-      .btn { width:100%; justify-content:center; }
-      .about-grid { grid-template-columns:1fr; }
-      .stats-stack { flex-direction:row; flex-wrap:wrap; }
-      .stat-card { flex:1; min-width:140px; }
-      .edu-cards { grid-template-columns:1fr; }
-      .projects-grid { grid-template-columns:1fr; }
-      .skills-layout { grid-template-columns:1fr; }
-      .cert-lang-grid { grid-template-columns:1fr; }
-      .timeline { padding-left:24px; }
-      .footer-top { grid-template-columns:1fr; }
-      .footer-social { flex-direction:row; flex-wrap:wrap; }
-      .footer-social-btn { flex:1; min-width:130px; justify-content:center; }
-      .footer-bottom { flex-direction:column; align-items:flex-start; gap:8px; }
-      .footer-nav { flex-wrap:wrap; gap:12px; }
-      .scroll-top { bottom:18px; right:18px; width:40px; height:40px; }
-    }
-
     @media(max-width:720px) {
       .nav-toggle { display:flex; }
-      .nav-brand { flex:1; }
-      .lang-toggle { order:2; pointer-events:auto !important; }
-      .nav-toggle { order:3; }
       .nav-links {
         display:none;
         position:absolute;
@@ -197,7 +163,6 @@
         padding:12px 20px 20px;
         gap:4px;
         box-shadow:var(--shadow-md);
-        z-index:200;
       }
       .nav-links.open { display:flex; }
       .nav-links a { padding:10px 14px; }
@@ -312,12 +277,6 @@
       border-color:var(--paper-3);
     }
     .btn-outline:hover { background:var(--paper-2); border-color:var(--paper-3); color:var(--ink); }
-    .btn-cv {
-      background:var(--gold-lt);
-      color:var(--gold-dk);
-      border-color:var(--gold);
-    }
-    .btn-cv:hover { background:var(--gold); color:var(--ink); border-color:var(--gold-dk); }
 
     /* Photo */
     .hero-photo-wrap {
@@ -381,20 +340,8 @@
       .hero {
         grid-template-columns:1fr;
         text-align:center;
-        gap:28px;
       }
-      .hero-photo-wrap { display:flex !important; justify-content:center; order:-1; }
-      .hero-photo-frame { width:150px; height:188px; }
-      .hero-photo-accent { display:none; }
-      .hero-badge {
-        left:50%;
-        right:auto;
-        transform:translateX(-50%);
-        bottom:-14px;
-        font-size:.73rem;
-        padding:7px 11px;
-        white-space:nowrap;
-      }
+      .hero-photo-wrap { display:none; }
       .hero-eyebrow { justify-content:center; }
       .hero-pills, .hero-actions { justify-content:center; }
       .hero-desc { margin:0 auto 28px; }
@@ -981,65 +928,6 @@
        HERO BOTTOM PADDING
     ═══════════════════════════════════════════ */
     .hero { padding-bottom:64px; }
-
-    /* ── LANGUAGE TOGGLE ── */
-    .lang-toggle {
-      display:flex !important;
-      align-items:center;
-      gap:5px;
-      padding:5px 11px;
-      border-radius:999px;
-      border:1.5px solid var(--paper-3);
-      background:var(--white);
-      font-size:.78rem;
-      font-weight:700;
-      color:var(--ink-2);
-      cursor:pointer;
-      transition:background var(--t-fast), border-color var(--t-fast), color var(--t-fast), transform var(--t-fast);
-      white-space:nowrap;
-      flex-shrink:0;
-      letter-spacing:.04em;
-      z-index:110;
-      position:relative;
-      user-select:none;
-      -webkit-tap-highlight-color:transparent;
-    }
-    .lang-toggle:hover {
-      background:var(--gold-lt);
-      border-color:var(--gold);
-      color:var(--gold-dk);
-      transform:scale(1.05);
-    }
-    .lang-toggle.active {
-      background:var(--navy);
-      border-color:var(--navy);
-      color:var(--white);
-    }
-    .lang-flag { font-size:.72rem; font-weight:800; letter-spacing:.02em; line-height:1; }
-
-    /* Page fade on lang switch */
-    body.lang-switching * {
-      transition: opacity .18s ease !important;
-      opacity: 0.4 !important;
-    }
-    body.lang-switching .lang-toggle,
-    body.lang-switching .nav {
-      opacity: 1 !important;
-    }
-
-    /* ── ANIMATION KEYFRAMES ── */
-    .avail-banner { animation: slideDown .55s cubic-bezier(.4,0,.2,1) .05s both; }
-    @keyframes slideDown { from{opacity:0;transform:translateY(-14px)} to{opacity:1;transform:none} }
-    .nav { animation: navFade .5s ease both; }
-    @keyframes navFade { from{opacity:0} to{opacity:1} }
-    .reveal.visible .section-icon { animation: iconBounce .5s cubic-bezier(.34,1.56,.64,1) .08s both; }
-    @keyframes iconBounce { from{transform:scale(.5) rotate(-12deg);opacity:0} to{transform:scale(1) rotate(0);opacity:1} }
-    .timeline::before { transform-origin:top; animation: drawLine 1s cubic-bezier(.4,0,.2,1) .2s both; }
-    @keyframes drawLine { from{transform:scaleY(0)} to{transform:scaleY(1)} }
-    .scroll-top:hover i { animation: spinUp .35s ease; }
-    @keyframes spinUp { from{transform:rotate(0) translateY(2px)} to{transform:rotate(360deg) translateY(0)} }
-    .hero-pills .pill { will-change:opacity,transform; }
-    .skill-tag { will-change:opacity,transform; }
   </style>
 </head>
 <body>
@@ -1052,17 +940,13 @@
         <span></span><span></span><span></span>
       </button>
       <div class="nav-links" id="navLinks">
-        <a href="#about" data-i18n="nav.about">About</a>
-        <a href="#education" data-i18n="nav.education">Education</a>
-        <a href="#experience" data-i18n="nav.experience">Experience</a>
-        <a href="#projects" data-i18n="nav.projects">Projects</a>
-        <a href="#skills" data-i18n="nav.skills">Skills</a>
-        <a href="mailto:byagmur2417@hotmail.com" class="nav-cta" data-i18n="nav.cta">Get in Touch</a>
+        <a href="#about">About</a>
+        <a href="#education">Education</a>
+        <a href="#experience">Experience</a>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="mailto:byagmur2417@hotmail.com" class="nav-cta">Get in Touch</a>
       </div>
-      <button class="lang-toggle" id="langToggle" aria-label="Switch language">
-        <span class="lang-flag">EN</span>
-        <span class="lang-label" id="langLabel">TR</span>
-      </button>
     </div>
   </nav>
 
@@ -1072,15 +956,15 @@
       <div class="avail-left">
         <span class="avail-dot"></span>
         <div>
-          <div class="avail-label" data-i18n="avail.label">Open to Opportunities</div>
-          <div class="avail-sub" data-i18n="avail.sub">MSc graduating Sep 2025 · London, UK</div>
+          <div class="avail-label">Open to Opportunities</div>
+          <div class="avail-sub">MSc graduating Sep 2025 · London, UK</div>
         </div>
       </div>
       <div class="avail-roles">
-        <span class="avail-role" data-i18n="avail.r1">Business Analyst</span>
-        <span class="avail-role" data-i18n="avail.r2">Data Analyst</span>
-        <span class="avail-role" data-i18n="avail.r3">Project Management</span>
-        <span class="avail-role" data-i18n="avail.r4">Product</span>
+        <span class="avail-role">Business Analyst</span>
+        <span class="avail-role">Data Analyst</span>
+        <span class="avail-role">Project Management</span>
+        <span class="avail-role">Product</span>
       </div>
     </div>
   </div>
@@ -1088,11 +972,11 @@
   <!-- HERO -->
   <section class="hero" id="hero">
     <div class="hero-content">
-      <div class="hero-eyebrow" data-i18n="hero.eyebrow">Based in London, UK</div>
+      <div class="hero-eyebrow">Based in London, UK</div>
       <h1 class="hero-name">Bedirhan<br /><em>Yagmur</em></h1>
       <p class="hero-desc">
         MSc Management of Business Information Technology graduate (Distinction) with a background in Industrial Engineering.
-        <span data-i18n="hero.desc">I turn data into decisions — bridging analysis, process improvement, and technology to deliver tangible business outcomes.</span>
+        I turn data into decisions — bridging analysis, process improvement, and technology to deliver tangible business outcomes.
       </p>
       <div class="hero-pills">
         <span class="pill"><i class="fa-solid fa-chart-bar"></i> Power BI</span>
@@ -1103,10 +987,9 @@
         <span class="pill"><i class="fa-solid fa-cubes"></i> Agile</span>
       </div>
       <div class="hero-actions">
-        <a class="btn btn-primary" href="mailto:byagmur2417@hotmail.com"><i class="fa-solid fa-envelope"></i> <span data-i18n="nav.cta">Get in Touch</span></a>
+        <a class="btn btn-primary" href="mailto:byagmur2417@hotmail.com"><i class="fa-solid fa-envelope"></i> Get in Touch</a>
         <a class="btn btn-gold" href="https://www.linkedin.com/in/bedirhan-yagmur-080996214/" target="_blank" rel="noopener"><i class="fab fa-linkedin"></i> LinkedIn</a>
         <a class="btn btn-outline" href="https://bedirhan2417.github.io/Bedirhan-Yagmur-Portfolio/" target="_blank" rel="noopener"><i class="fa-solid fa-arrow-up-right-from-square"></i> Portfolio</a>
-        <a class="btn btn-cv" href="Bedirhan_Yagmur_CV.pdf" download="Bedirhan_Yagmur_CV.pdf"><i class="fa-solid fa-file-arrow-down"></i> <span data-i18n="cv.btn">Download CV</span></a>
       </div>
     </div>
     <div class="hero-photo-wrap">
@@ -1116,7 +999,7 @@
       <div class="hero-photo-accent"></div>
       <div class="hero-badge">
         <span class="dot"></span>
-        <span data-i18n="hero.badge">Available · London</span>
+        Available · London
       </div>
     </div>
   </section>
@@ -1127,7 +1010,7 @@
   <section id="about" class="reveal">
     <div class="section-header">
       <div class="section-icon"><i class="fa-solid fa-user"></i></div>
-      <h2 class="section-title" data-i18n="about.title">Professional Summary</h2>
+      <h2 class="section-title">Professional Summary</h2>
     </div>
     <div class="about-grid">
       <div class="about-text">
@@ -1146,28 +1029,28 @@
           <div class="stat-icon"><i class="fa-solid fa-graduation-cap"></i></div>
           <div>
             <div class="stat-num">Distinction</div>
-            <div class="stat-label" data-i18n="about.s1">MSc Grade · University of Greenwich</div>
+            <div class="stat-label">MSc Grade · University of Greenwich</div>
           </div>
         </div>
         <div class="stat-card">
           <div class="stat-icon"><i class="fa-solid fa-briefcase"></i></div>
           <div>
             <div class="stat-num">4+</div>
-            <div class="stat-label" data-i18n="about.s2">Professional Internship Roles</div>
+            <div class="stat-label">Professional Internship Roles</div>
           </div>
         </div>
         <div class="stat-card">
           <div class="stat-icon"><i class="fa-solid fa-diagram-project"></i></div>
           <div>
             <div class="stat-num">6+</div>
-            <div class="stat-label" data-i18n="about.s3">Projects Built & Delivered</div>
+            <div class="stat-label">Projects Built & Delivered</div>
           </div>
         </div>
         <div class="stat-card">
           <div class="stat-icon"><i class="fa-solid fa-globe"></i></div>
           <div>
             <div class="stat-num">3</div>
-            <div class="stat-label" data-i18n="about.s4">Languages (TR / EN / DE)</div>
+            <div class="stat-label">Languages (TR / EN / DE)</div>
           </div>
         </div>
       </div>
@@ -1180,14 +1063,14 @@
   <section id="education" class="reveal">
     <div class="section-header">
       <div class="section-icon"><i class="fa-solid fa-graduation-cap"></i></div>
-      <h2 class="section-title" data-i18n="edu.title">Education</h2>
+      <h2 class="section-title">Education</h2>
     </div>
     <div class="edu-cards">
       <div class="edu-card">
         <div class="edu-degree">MSc Management of Business Information Technology</div>
         <div class="edu-school"><i class="fa-solid fa-location-dot" style="margin-right:5px;font-size:.8rem;"></i>University of Greenwich, London, UK</div>
         <div class="edu-meta">Sep 2024 – Sep 2025</div>
-        <span class="edu-grade"><i class="fa-solid fa-star"></i> <span data-i18n="edu.grade">Grade: Distinction</span></span>
+        <span class="edu-grade"><i class="fa-solid fa-star"></i> Grade: Distinction</span>
       </div>
       <div class="edu-card">
         <div class="edu-degree">BSc Industrial Engineering</div>
@@ -1203,7 +1086,7 @@
   <section id="experience" class="reveal">
     <div class="section-header">
       <div class="section-icon"><i class="fa-solid fa-briefcase"></i></div>
-      <h2 class="section-title" data-i18n="exp.title">Professional Experience</h2>
+      <h2 class="section-title">Professional Experience</h2>
     </div>
     <div class="timeline">
 
@@ -1280,7 +1163,7 @@
   <section id="projects" class="reveal">
     <div class="section-header">
       <div class="section-icon"><i class="fa-solid fa-diagram-project"></i></div>
-      <h2 class="section-title" data-i18n="proj.title">Key Projects</h2>
+      <h2 class="section-title">Key Projects</h2>
     </div>
     <div class="projects-grid">
 
@@ -1335,12 +1218,12 @@
   <section id="skills" class="reveal">
     <div class="section-header">
       <div class="section-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
-      <h2 class="section-title" data-i18n="skills.title">Skills</h2>
+      <h2 class="section-title">Skills</h2>
     </div>
     <div class="skills-layout">
 
       <div class="skill-group">
-        <div class="skill-group-title" data-i18n="skills.g1">Data & Business Intelligence</div>
+        <div class="skill-group-title">Data & Business Intelligence</div>
         <div class="skill-tags">
           <span class="skill-tag"><i class="fa-solid fa-chart-column" style="color:var(--gold-dk);"></i> Power BI <span class="skill-level">Advanced</span></span>
           <span class="skill-tag"><i class="fa-solid fa-table" style="color:var(--gold-dk);"></i> Excel <span class="skill-level">Advanced</span></span>
@@ -1352,7 +1235,7 @@
       </div>
 
       <div class="skill-group">
-        <div class="skill-group-title" data-i18n="skills.g2">Business Analysis & PM</div>
+        <div class="skill-group-title">Business Analysis & PM</div>
         <div class="skill-tags">
           <span class="skill-tag"><i class="fa-solid fa-clipboard-list" style="color:var(--gold-dk);"></i> Requirements Gathering</span>
           <span class="skill-tag"><i class="fa-solid fa-arrows-spin" style="color:var(--gold-dk);"></i> Process Improvement</span>
@@ -1364,7 +1247,7 @@
       </div>
 
       <div class="skill-group">
-        <div class="skill-group-title" data-i18n="skills.g3">Technical & Development</div>
+        <div class="skill-group-title">Technical & Development</div>
         <div class="skill-tags">
           <span class="skill-tag"><i class="fa-brands fa-php" style="color:var(--gold-dk);"></i> PHP <span class="skill-level">Intermediate</span></span>
           <span class="skill-tag"><i class="fa-brands fa-html5" style="color:var(--gold-dk);"></i> HTML/CSS</span>
@@ -1376,7 +1259,7 @@
       </div>
 
       <div class="skill-group">
-        <div class="skill-group-title" data-i18n="skills.g4">Design & Prototyping</div>
+        <div class="skill-group-title">Design & Prototyping</div>
         <div class="skill-tags">
           <span class="skill-tag"><i class="fa-brands fa-figma" style="color:var(--gold-dk);"></i> Figma <span class="skill-level">Intermediate</span></span>
           <span class="skill-tag"><i class="fa-solid fa-pen-ruler" style="color:var(--gold-dk);"></i> UX Prototyping</span>
@@ -1390,41 +1273,41 @@
     <!-- Certs + Languages -->
     <div class="cert-lang-grid" style="margin-top:20px;">
       <div class="cert-block">
-        <div class="skill-group-title" style="margin-bottom:12px;" data-i18n="skills.certs">Certifications</div>
+        <div class="skill-group-title" style="margin-bottom:12px;">Certifications</div>
         <div class="cert-item">
           <div class="cert-icon"><i class="fa-solid fa-certificate"></i></div>
-          <div class="cert-name" data-i18n="skills.c1">Business Analyst Certification</div>
+          <div class="cert-name">Business Analyst Certification</div>
         </div>
         <div class="cert-item">
           <div class="cert-icon"><i class="fa-solid fa-certificate"></i></div>
-          <div class="cert-name" data-i18n="skills.c2">Excel Skills for Business: Essentials</div>
+          <div class="cert-name">Excel Skills for Business: Essentials</div>
         </div>
         <div class="cert-item">
           <div class="cert-icon"><i class="fa-solid fa-language"></i></div>
-          <div class="cert-name" data-i18n="skills.c3">IELTS Academic</div>
+          <div class="cert-name">IELTS Academic</div>
         </div>
       </div>
       <div class="lang-block">
-        <div class="skill-group-title" style="margin-bottom:12px;" data-i18n="skills.langs">Languages</div>
+        <div class="skill-group-title" style="margin-bottom:12px;">Languages</div>
         <div class="lang-item">
           <div class="lang-icon"><i class="fa-solid fa-comments"></i></div>
           <div>
-            <div class="lang-name" data-i18n="skills.l1n">Turkish</div>
-            <div class="lang-level" data-i18n="skills.l1l">Native</div>
+            <div class="lang-name">Turkish</div>
+            <div class="lang-level">Native</div>
           </div>
         </div>
         <div class="lang-item">
           <div class="lang-icon"><i class="fa-solid fa-comments"></i></div>
           <div>
-            <div class="lang-name" data-i18n="skills.l2n">English</div>
-            <div class="lang-level" data-i18n="skills.l2l">Fluent · IELTS Academic</div>
+            <div class="lang-name">English</div>
+            <div class="lang-level">Fluent · IELTS Academic</div>
           </div>
         </div>
         <div class="lang-item">
           <div class="lang-icon"><i class="fa-solid fa-comments"></i></div>
           <div>
-            <div class="lang-name" data-i18n="skills.l3n">German</div>
-            <div class="lang-level" data-i18n="skills.l3l">Beginner</div>
+            <div class="lang-name">German</div>
+            <div class="lang-level">Beginner</div>
           </div>
         </div>
       </div>
@@ -1437,7 +1320,7 @@
       <div class="footer-top">
         <div>
           <div class="footer-name">Bedirhan Yagmur</div>
-          <div class="footer-tagline" data-i18n="footer.tagline">MSc Business Information Technology (Distinction) · London, UK</div>
+          <div class="footer-tagline">MSc Business Information Technology (Distinction) · London, UK</div>
           <div class="footer-contact-list">
             <a href="mailto:byagmur2417@hotmail.com"><i class="fa-solid fa-envelope"></i>byagmur2417@hotmail.com</a>
             <a href="tel:+447584869012"><i class="fa-solid fa-phone"></i>+44 7584 869012</a>
@@ -1445,20 +1328,19 @@
           </div>
         </div>
         <div class="footer-social">
-          <a class="footer-social-btn" href="mailto:byagmur2417@hotmail.com"><i class="fa-solid fa-envelope"></i> <span data-i18n="nav.cta">Get in Touch</span></a>
+          <a class="footer-social-btn" href="mailto:byagmur2417@hotmail.com"><i class="fa-solid fa-envelope"></i> Get in Touch</a>
           <a class="footer-social-btn" href="https://www.linkedin.com/in/bedirhan-yagmur-080996214/" target="_blank" rel="noopener"><i class="fab fa-linkedin"></i> LinkedIn</a>
           <a class="footer-social-btn" href="https://github.com/Bedirhan2417" target="_blank" rel="noopener"><i class="fab fa-github"></i> GitHub</a>
-          <a class="footer-social-btn" href="Bedirhan_Yagmur_CV.pdf" download="Bedirhan_Yagmur_CV.pdf"><i class="fa-solid fa-file-arrow-down"></i> <span data-i18n="cv.btn">Download CV</span></a>
         </div>
       </div>
       <div class="footer-bottom">
-        <small>&copy; <span id="copyright-year">2025</span> Bedirhan Yagmur. <span data-i18n="footer.rights">All rights reserved.</span></small>
+        <small>&copy; <span id="copyright-year">2025</span> Bedirhan Yagmur. All rights reserved.</small>
         <nav class="footer-nav">
-          <a href="#about" data-i18n="nav.about">About</a>
-          <a href="#education" data-i18n="nav.education">Education</a>
-          <a href="#experience" data-i18n="nav.experience">Experience</a>
-          <a href="#projects" data-i18n="nav.projects">Projects</a>
-          <a href="#skills" data-i18n="nav.skills">Skills</a>
+          <a href="#about">About</a>
+          <a href="#education">Education</a>
+          <a href="#experience">Experience</a>
+          <a href="#projects">Projects</a>
+          <a href="#skills">Skills</a>
         </nav>
       </div>
     </div>
@@ -1629,102 +1511,42 @@
         }, { threshold: 1 }).observe(dot);
       });
 
-    });
+    })();
   </script>
 
+  <style>
+    /* Availability banner slide down */
+    .avail-banner { animation: slideDown .55s cubic-bezier(.4,0,.2,1) .05s both; }
+    @keyframes slideDown { from{opacity:0;transform:translateY(-14px)} to{opacity:1;transform:none} }
 
+    /* Nav fade */
+    .nav { animation: navFade .5s ease both; }
+    @keyframes navFade { from{opacity:0} to{opacity:1} }
 
-  <script>
-  (function() {
-    var T = {
-      en: {
-        "nav.about":"About","nav.education":"Education","nav.experience":"Experience",
-        "nav.projects":"Projects","nav.skills":"Skills","nav.cta":"Get in Touch",
-        "avail.label":"Open to Opportunities","avail.sub":"MSc graduating Sep 2025 · London, UK",
-        "avail.r1":"Business Analyst","avail.r2":"Data Analyst",
-        "avail.r3":"Project Management","avail.r4":"Product",
-        "hero.eyebrow":"Based in London, UK",
-        "hero.desc":"MSc Management of Business Information Technology graduate (Distinction) with a background in Industrial Engineering. I turn data into decisions — bridging analysis, process improvement, and technology to deliver tangible business outcomes.",
-        "hero.badge":"Available · London",
-        "about.title":"Professional Summary",
-        "about.s1":"MSc Grade · University of Greenwich","about.s2":"Professional Internship Roles",
-        "about.s3":"Projects Built & Delivered","about.s4":"Languages (TR / EN / DE)",
-        "edu.title":"Education","edu.grade":"Grade: Distinction",
-        "exp.title":"Professional Experience","proj.title":"Key Projects",
-        "skills.title":"Skills","skills.g1":"Data & Business Intelligence",
-        "skills.g2":"Business Analysis & PM","skills.g3":"Technical & Development",
-        "skills.g4":"Design & Prototyping","skills.certs":"Certifications","skills.langs":"Languages",
-        "skills.c1":"Business Analyst Certification","skills.c2":"Excel Skills for Business: Essentials",
-        "skills.c3":"IELTS Academic","skills.l1n":"Turkish","skills.l1l":"Native",
-        "skills.l2n":"English","skills.l2l":"Fluent · IELTS Academic",
-        "skills.l3n":"German","skills.l3l":"Beginner",
-        "footer.tagline":"MSc Business Information Technology (Distinction) · London, UK",
-        "footer.rights":"All rights reserved.",
-        "cv.btn":"Download CV"
-      },
-      tr: {
-        "nav.about":"Hakkımda","nav.education":"Eğitim","nav.experience":"Deneyim",
-        "nav.projects":"Projeler","nav.skills":"Beceriler","nav.cta":"İletişime Geç",
-        "avail.label":"İş Fırsatlarına Açığım","avail.sub":"MSc mezuniyeti Eyl 2025 · Londra, İngiltere",
-        "avail.r1":"İş Analisti","avail.r2":"Veri Analisti",
-        "avail.r3":"Proje Yönetimi","avail.r4":"Ürün",
-        "hero.eyebrow":"Londra, İngiltere'de yaşıyorum",
-        "hero.desc":"İşletme Bilgi Teknolojileri Yönetimi alanında Yüksek Lisans mezunuyum (Birincilik Derecesi) ve Endüstri Mühendisliği altyapısına sahibim. Veriyi kararlara dönüştürüyorum — analiz, süreç geliştirme ve teknolojiyi bir araya getirerek somut iş sonuçları üretiyorum.",
-        "hero.badge":"Müsait · İstanbul",
-        "about.title":"Profesyonel Özet",
-        "about.s1":"MSc Notu · Greenwich Üniversitesi","about.s2":"Profesyonel Staj Deneyimi",
-        "about.s3":"Geliştirilen & Teslim Edilen Proje","about.s4":"Dil (TR / EN / DE)",
-        "edu.title":"Eğitim","edu.grade":"Not: Birincilik",
-        "exp.title":"Profesyonel Deneyim","proj.title":"Öne Çıkan Projeler",
-        "skills.title":"Beceriler","skills.g1":"Veri & İş Zekâsı",
-        "skills.g2":"İş Analizi & Proje Yönetimi","skills.g3":"Teknik & Geliştirme",
-        "skills.g4":"Tasarım & Prototipleme","skills.certs":"Sertifikalar","skills.langs":"Diller",
-        "skills.c1":"İş Analisti Sertifikası","skills.c2":"Excel İş Becerileri: Temel",
-        "skills.c3":"IELTS Academic","skills.l1n":"Türkçe","skills.l1l":"Anadil",
-        "skills.l2n":"İngilizce","skills.l2l":"Akıcı · IELTS Academic",
-        "skills.l3n":"Almanca","skills.l3l":"Başlangıç",
-        "footer.tagline":"İşletme Bilgi Teknolojileri Yönetimi YL (Birincilik) · Londra, İngiltere",
-        "footer.rights":"Tüm hakları saklıdır.",
-        "cv.btn":"CV İndir"
-      }
-    };
-
-    var currentLang = 'en';
-
-    function applyLang(l) {
-      currentLang = l;
-      var t = T[l];
-      var els = document.querySelectorAll('[data-i18n]');
-      for (var i = 0; i < els.length; i++) {
-        var key = els[i].getAttribute('data-i18n');
-        if (t[key] !== undefined) els[i].textContent = t[key];
-      }
-      var lbl = document.getElementById('langLabel');
-      if (lbl) lbl.textContent = (l === 'tr') ? 'EN' : 'TR';
-      var btn = document.getElementById('langToggle');
-      if (btn) {
-        btn.classList.toggle('active', l === 'tr');
-      }
-      document.documentElement.lang = l;
-      try { localStorage.setItem('pLang', l); } catch(e) {}
+    /* Section icon bounce when revealed */
+    .reveal.visible .section-icon {
+      animation: iconBounce .5s cubic-bezier(.34,1.56,.64,1) .08s both;
+    }
+    @keyframes iconBounce {
+      from{transform:scale(.5) rotate(-12deg);opacity:0}
+      to{transform:scale(1) rotate(0);opacity:1}
     }
 
-    document.addEventListener('DOMContentLoaded', function() {
-      var btn = document.getElementById('langToggle');
-      if (!btn) { console.error('langToggle not found'); return; }
+    /* Timeline line draw */
+    .timeline::before {
+      transform-origin:top;
+      animation: drawLine 1s cubic-bezier(.4,0,.2,1) .2s both;
+    }
+    @keyframes drawLine { from{transform:scaleY(0)} to{transform:scaleY(1)} }
 
-      btn.addEventListener('click', function(e) {
-        e.preventDefault();
-        e.stopPropagation();
-        applyLang(currentLang === 'en' ? 'tr' : 'en');
-      });
+    /* Scroll-top hover spin */
+    .scroll-top:hover i { animation: spinUp .35s ease; }
+    @keyframes spinUp { from{transform:rotate(0) translateY(2px)} to{transform:rotate(360deg) translateY(0)} }
 
-      var saved = 'en';
-      try { saved = localStorage.getItem('pLang') || 'en'; } catch(e) {}
-      applyLang(saved);
-    });
-  })();
-  </script>
+    /* Pill will-change */
+    .hero-pills .pill { will-change:opacity,transform; }
+    .skill-tag { will-change:opacity,transform; }
+  </style>
 
 </body>
 </html>
