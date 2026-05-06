@@ -92,6 +92,7 @@
       display:flex;
       align-items:center;
       justify-content:space-between;
+      gap:12px;
     }
     .nav-brand {
       font-family:'DM Serif Display', serif;
@@ -180,6 +181,9 @@
 
     @media(max-width:720px) {
       .nav-toggle { display:flex; }
+      .nav-brand { flex:1; }
+      .lang-toggle { order:2; pointer-events:auto !important; }
+      .nav-toggle { order:3; }
       .nav-links {
         display:none;
         position:absolute;
@@ -193,6 +197,7 @@
         padding:12px 20px 20px;
         gap:4px;
         box-shadow:var(--shadow-md);
+        z-index:200;
       }
       .nav-links.open { display:flex; }
       .nav-links a { padding:10px 14px; }
@@ -973,14 +978,14 @@
 
     /* ── LANGUAGE TOGGLE ── */
     .lang-toggle {
-      display:flex;
+      display:flex !important;
       align-items:center;
-      gap:6px;
-      padding:5px 12px;
+      gap:5px;
+      padding:5px 11px;
       border-radius:999px;
       border:1.5px solid var(--paper-3);
       background:var(--white);
-      font-size:.8rem;
+      font-size:.78rem;
       font-weight:700;
       color:var(--ink-2);
       cursor:pointer;
@@ -988,6 +993,10 @@
       white-space:nowrap;
       flex-shrink:0;
       letter-spacing:.04em;
+      z-index:110;
+      position:relative;
+      user-select:none;
+      -webkit-tap-highlight-color:transparent;
     }
     .lang-toggle:hover {
       background:var(--gold-lt);
@@ -1599,7 +1608,7 @@
         }, { threshold: 1 }).observe(dot);
       });
 
-    })();
+    });
   </script>
 
   <style>
@@ -1641,7 +1650,7 @@
   // ═══════════════════════════════════════════
   //  i18n — TR / EN LANGUAGE SWITCHER
   // ═══════════════════════════════════════════
-  (() => {
+  document.addEventListener('DOMContentLoaded', () => {
     const translations = {
       en: {
         'nav.about':      'About',
@@ -1762,17 +1771,16 @@
     applyLang(currentLang);
 
     // Toggle on click
-    btn.addEventListener('click', () => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
       currentLang = currentLang === 'en' ? 'tr' : 'en';
       localStorage.setItem('portfolioLang', currentLang);
+      applyLang(currentLang);
 
-      // Smooth fade
-      document.body.style.transition = 'opacity .15s ease';
-      document.body.style.opacity = '0.5';
-      setTimeout(() => {
-        applyLang(currentLang);
-        document.body.style.opacity = '1';
-      }, 150);
+      // Smooth fade after apply (non-blocking)
+      document.body.style.transition = 'opacity .12s ease';
+      document.body.style.opacity = '0.6';
+      setTimeout(() => { document.body.style.opacity = '1'; }, 130);
     });
   })();
   </script>
