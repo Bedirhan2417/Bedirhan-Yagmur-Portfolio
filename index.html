@@ -1027,6 +1027,19 @@
       opacity: 1 !important;
     }
 
+    /* ── ANIMATION KEYFRAMES ── */
+    .avail-banner { animation: slideDown .55s cubic-bezier(.4,0,.2,1) .05s both; }
+    @keyframes slideDown { from{opacity:0;transform:translateY(-14px)} to{opacity:1;transform:none} }
+    .nav { animation: navFade .5s ease both; }
+    @keyframes navFade { from{opacity:0} to{opacity:1} }
+    .reveal.visible .section-icon { animation: iconBounce .5s cubic-bezier(.34,1.56,.64,1) .08s both; }
+    @keyframes iconBounce { from{transform:scale(.5) rotate(-12deg);opacity:0} to{transform:scale(1) rotate(0);opacity:1} }
+    .timeline::before { transform-origin:top; animation: drawLine 1s cubic-bezier(.4,0,.2,1) .2s both; }
+    @keyframes drawLine { from{transform:scaleY(0)} to{transform:scaleY(1)} }
+    .scroll-top:hover i { animation: spinUp .35s ease; }
+    @keyframes spinUp { from{transform:rotate(0) translateY(2px)} to{transform:rotate(360deg) translateY(0)} }
+    .hero-pills .pill { will-change:opacity,transform; }
+    .skill-tag { will-change:opacity,transform; }
   </style>
 </head>
 <body>
@@ -1619,39 +1632,6 @@
     });
   </script>
 
-  <style>
-    /* Availability banner slide down */
-    .avail-banner { animation: slideDown .55s cubic-bezier(.4,0,.2,1) .05s both; }
-    @keyframes slideDown { from{opacity:0;transform:translateY(-14px)} to{opacity:1;transform:none} }
-
-    /* Nav fade */
-    .nav { animation: navFade .5s ease both; }
-    @keyframes navFade { from{opacity:0} to{opacity:1} }
-
-    /* Section icon bounce when revealed */
-    .reveal.visible .section-icon {
-      animation: iconBounce .5s cubic-bezier(.34,1.56,.64,1) .08s both;
-    }
-    @keyframes iconBounce {
-      from{transform:scale(.5) rotate(-12deg);opacity:0}
-      to{transform:scale(1) rotate(0);opacity:1}
-    }
-
-    /* Timeline line draw */
-    .timeline::before {
-      transform-origin:top;
-      animation: drawLine 1s cubic-bezier(.4,0,.2,1) .2s both;
-    }
-    @keyframes drawLine { from{transform:scaleY(0)} to{transform:scaleY(1)} }
-
-    /* Scroll-top hover spin */
-    .scroll-top:hover i { animation: spinUp .35s ease; }
-    @keyframes spinUp { from{transform:rotate(0) translateY(2px)} to{transform:rotate(360deg) translateY(0)} }
-
-    /* Pill will-change */
-    .hero-pills .pill { will-change:opacity,transform; }
-    .skill-tag { will-change:opacity,transform; }
-  </style>
 
 
   <script>
