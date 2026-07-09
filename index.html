@@ -623,11 +623,64 @@
     /* Section icon bounce */
     .reveal.visible .section-icon { animation:iconBounce .5s cubic-bezier(.34,1.56,.64,1) .08s both; }
     @keyframes iconBounce { from{transform:scale(.5) rotate(-12deg);opacity:0} to{transform:scale(1) rotate(0);opacity:1} }
+
+    /* ═══════════════════════════════════════════
+       SCROLL PROGRESS BAR
+    ═══════════════════════════════════════════ */
+    .scroll-progress {
+      position:fixed; top:0; left:0; height:3px; width:0%;
+      background:linear-gradient(90deg, var(--gold), var(--navy));
+      z-index:300; transition:width .08s linear;
+    }
+
+    /* ═══════════════════════════════════════════
+       HERO BACKGROUND BLOBS
+    ═══════════════════════════════════════════ */
+    .hero { overflow:visible; }
+    .hero-content, .hero-photo-wrap { position:relative; z-index:1; }
+    .hero-blobs { position:absolute; inset:-60px -20px; z-index:0; pointer-events:none; overflow:hidden; }
+    .blob { position:absolute; border-radius:50%; filter:blur(60px); opacity:.35; will-change:transform; }
+    .blob-a { width:340px; height:340px; left:-60px; top:-40px; background:radial-gradient(circle, var(--gold) 0%, transparent 70%); animation:blobFloat1 16s ease-in-out infinite; }
+    .blob-b { width:280px; height:280px; right:40px; top:20px; background:radial-gradient(circle, var(--navy) 0%, transparent 70%); opacity:.18; animation:blobFloat2 20s ease-in-out infinite; }
+    .blob-c { width:220px; height:220px; right:-40px; bottom:-60px; background:radial-gradient(circle, var(--ai-purple) 0%, transparent 70%); opacity:.12; animation:blobFloat3 18s ease-in-out infinite; }
+    @keyframes blobFloat1 { 0%,100%{transform:translate(0,0) scale(1)} 50%{transform:translate(30px,25px) scale(1.12)} }
+    @keyframes blobFloat2 { 0%,100%{transform:translate(0,0) scale(1)} 50%{transform:translate(-25px,20px) scale(1.08)} }
+    @keyframes blobFloat3 { 0%,100%{transform:translate(0,0) scale(1)} 50%{transform:translate(20px,-20px) scale(1.15)} }
+    @media (prefers-reduced-motion: reduce) { .blob { animation:none !important; } }
+
+    /* ═══════════════════════════════════════════
+       HERO TYPEWRITER
+    ═══════════════════════════════════════════ */
+    .hero-typewriter {
+      display:flex; align-items:baseline; gap:8px; flex-wrap:wrap;
+      font-size:.95rem; color:var(--ink-3); margin:-14px 0 26px;
+      font-weight:400;
+    }
+    .tw-text { font-weight:700; color:var(--gold-dk); font-family:'Space Grotesk', sans-serif; }
+    .tw-cursor { display:inline-block; width:2px; background:var(--gold-dk); margin-left:1px; animation:twBlink .85s step-end infinite; }
+    @keyframes twBlink { 0%,100%{opacity:1} 50%{opacity:0} }
+    @media(max-width:840px) { .hero-typewriter { justify-content:center; } }
+
+    /* ═══════════════════════════════════════════
+       TILT + MAGNETIC INTERACTIONS
+    ═══════════════════════════════════════════ */
+    .tilt-card { transition:transform .12s ease-out, box-shadow var(--t-med), border-color var(--t-fast); }
+    .btn { will-change:transform; }
+
+    /* ═══════════════════════════════════════════
+       MOBILE HERO PHOTO
+    ═══════════════════════════════════════════ */
+    @media(max-width:840px) {
+      .hero-photo-wrap { display:block; order:-1; margin:0 auto 28px; }
+      .hero-photo-frame { width:150px; height:190px; margin:0 auto; }
+      .hero-badge { font-size:.7rem; padding:7px 10px; bottom:-10px; left:50%; transform:translateX(-50%); white-space:nowrap; }
+    }
   </style>
 </head>
 <body>
 
   <div id="cursor-glow"></div>
+  <div class="scroll-progress" id="scrollProgress"></div>
 
   <!-- NAVIGATION -->
   <nav class="nav" id="nav">
@@ -669,6 +722,11 @@
 
   <!-- HERO -->
   <section class="hero" id="hero">
+    <div class="hero-blobs" aria-hidden="true">
+      <span class="blob blob-a"></span>
+      <span class="blob blob-b"></span>
+      <span class="blob blob-c"></span>
+    </div>
     <div class="hero-content">
       <div class="hero-eyebrow">Based in London, UK · Graduate Visa</div>
       <h1 class="hero-name">Bedirhan<br /><em>Yagmur</em></h1>
@@ -676,6 +734,7 @@
         MSc Management of Business Information Technology graduate (Distinction) with a background in Industrial Engineering.
         I turn data into decisions — bridging analysis, process improvement, and technology to deliver tangible business outcomes.
       </p>
+      <div class="hero-typewriter"><span>Open to roles in</span> <span class="tw-text" id="twText">&nbsp;</span><span class="tw-cursor" id="twCursor">&nbsp;</span></div>
       <div class="hero-pills">
         <span class="pill"><i class="fa-solid fa-chart-bar"></i> Power BI</span>
         <span class="pill"><i class="fa-solid fa-database"></i> SQL</span>
@@ -689,6 +748,7 @@
         <a class="btn btn-primary" href="mailto:byagmur2417@hotmail.com"><i class="fa-solid fa-envelope"></i> Get in Touch</a>
         <a class="btn btn-gold" href="https://www.linkedin.com/in/bedirhan-yagmur-080996214/" target="_blank" rel="noopener"><i class="fab fa-linkedin"></i> LinkedIn</a>
         <a class="btn btn-outline" href="https://github.com/Bedirhan2417" target="_blank" rel="noopener"><i class="fab fa-github"></i> GitHub</a>
+        <a class="btn btn-outline" href="Bedirhan_Yagmur_CV.pdf" download="Bedirhan_Yagmur_CV.pdf"><i class="fa-solid fa-file-arrow-down"></i> Download CV</a>
       </div>
     </div>
     <div class="hero-photo-wrap">
@@ -1117,6 +1177,7 @@
           <a class="footer-social-btn" href="https://www.linkedin.com/in/bedirhan-yagmur-080996214/" target="_blank" rel="noopener"><i class="fab fa-linkedin"></i> LinkedIn</a>
           <a class="footer-social-btn" href="https://github.com/Bedirhan2417" target="_blank" rel="noopener"><i class="fab fa-github"></i> GitHub</a>
           <a class="footer-social-btn" href="https://kineticcollective.co.uk" target="_blank" rel="noopener"><i class="fa-solid fa-users"></i> Kinetic Collective</a>
+          <a class="footer-social-btn" href="Bedirhan_Yagmur_CV.pdf" download="Bedirhan_Yagmur_CV.pdf"><i class="fa-solid fa-file-arrow-down"></i> Download CV</a>
         </div>
       </div>
       <div class="footer-bottom">
@@ -1280,6 +1341,69 @@
           entries.forEach(e => { if(e.isIntersecting) dot.classList.add('popped'); });
         }, { threshold:0.8 }).observe(dot);
       });
+
+      // Scroll progress bar
+      const progressBar = document.getElementById('scrollProgress');
+      const updateProgress = () => {
+        const h = document.documentElement;
+        const scrolled = h.scrollTop;
+        const height = h.scrollHeight - h.clientHeight;
+        progressBar.style.width = (height > 0 ? (scrolled / height) * 100 : 0) + '%';
+      };
+      window.addEventListener('scroll', updateProgress, { passive:true });
+      updateProgress();
+
+      // Hero typewriter — cycles target roles
+      const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const twEl = document.getElementById('twText');
+      const twCursor = document.getElementById('twCursor');
+      const roles = ['Business Analyst', 'Data Analyst', 'Project Management', 'Product'];
+      if (twEl && !reducedMotion) {
+        let roleIdx = 0, charIdx = 0, deleting = false;
+        const typeTick = () => {
+          const current = roles[roleIdx];
+          if (!deleting) {
+            charIdx++;
+            twEl.textContent = current.slice(0, charIdx);
+            if (charIdx === current.length) { deleting = true; setTimeout(typeTick, 1400); return; }
+          } else {
+            charIdx--;
+            twEl.textContent = current.slice(0, charIdx);
+            if (charIdx === 0) { deleting = false; roleIdx = (roleIdx + 1) % roles.length; setTimeout(typeTick, 300); return; }
+          }
+          setTimeout(typeTick, deleting ? 35 : 65);
+        };
+        typeTick();
+      } else if (twEl) {
+        twEl.textContent = roles.join(' · ');
+        if (twCursor) twCursor.style.display = 'none';
+      }
+
+      // 3D tilt on cards (pointer devices only, respects reduced motion)
+      if (window.matchMedia('(pointer:fine)').matches && !reducedMotion) {
+        const tiltTargets = document.querySelectorAll('.project-card:not(.featured), .tool-card, .edu-card, .stat-card');
+        tiltTargets.forEach(card => {
+          card.classList.add('tilt-card');
+          card.addEventListener('mousemove', e => {
+            const r = card.getBoundingClientRect();
+            const px = (e.clientX - r.left) / r.width - 0.5;
+            const py = (e.clientY - r.top) / r.height - 0.5;
+            card.style.transform = `perspective(700px) rotateX(${(-py * 7).toFixed(2)}deg) rotateY(${(px * 7).toFixed(2)}deg) translateY(-4px)`;
+          });
+          card.addEventListener('mouseleave', () => { card.style.transform = ''; });
+        });
+
+        // Magnetic buttons
+        document.querySelectorAll('.btn, .nav-cta').forEach(btn => {
+          btn.addEventListener('mousemove', e => {
+            const r = btn.getBoundingClientRect();
+            const mx = (e.clientX - r.left - r.width / 2) * 0.25;
+            const my = (e.clientY - r.top - r.height / 2) * 0.35;
+            btn.style.transform = `translate(${mx.toFixed(1)}px, ${(my - 2).toFixed(1)}px)`;
+          });
+          btn.addEventListener('mouseleave', () => { btn.style.transform = ''; });
+        });
+      }
 
     })();
   </script>
